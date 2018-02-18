@@ -1,0 +1,15 @@
+# SCsub
+Import('env')
+
+thirdparty_dir = "#thirdparty/midifile/"
+
+
+
+env.add_source_files(env.modules_sources,"*.cpp") # just add all cpp files to the build
+
+#src_list = ["summator.cpp", "other.cpp", "etc.cpp"]
+#env.add_source_files(env.modules_sources, src_list)
+
+#env.Append(CPPPATH="mylib/include") # this is a relative path
+#env.Append(CPPPATH="#myotherlib/include") # this is an 'absolute' path
+#module_env.Append(CXXFLAGS=['-O2', '-std=c++11']) # env variable
