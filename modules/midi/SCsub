@@ -1,15 +1,29 @@
 # SCsub
 Import('env')
 
+module_env = env.Clone()
+
 thirdparty_dir = "#thirdparty/midifile/"
 
 
+midifile_src = [#"src-library/Options.cpp"
+    #    "src-library/Binasc.cpp",
+    "src-library/MidiEventList.cpp",
+    "src-library/MidiMessage.cpp",
+    "src-library/MidiEvent.cpp",
+    "src-library/MidiFile.cpp"]
 
-env.add_source_files(env.modules_sources,"*.cpp") # just add all cpp files to the build
+
+thirdparty_sources = [thirdparty_dir + file for file in midifile_src]
+
+module_env.add_source_files(module_env.modules_sources, thirdparty_sources)
+
+
+module_env.add_source_files(module_env.modules_sources,"*.cpp") # just add all cpp files to the build
 
 #src_list = ["summator.cpp", "other.cpp", "etc.cpp"]
 #env.add_source_files(env.modules_sources, src_list)
 
 #env.Append(CPPPATH="mylib/include") # this is a relative path
 #env.Append(CPPPATH="#myotherlib/include") # this is an 'absolute' path
-#module_env.Append(CXXFLAGS=['-O2', '-std=c++11']) # env variable
+module_env.Append(CXXFLAGS=['-O2', '-std=c++11']) # env variable
