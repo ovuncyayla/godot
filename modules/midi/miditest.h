@@ -16,6 +16,7 @@ public:
     void add(int value);
     void reset();
     int get_total() const;
+    int asd();
 
     MidiTest();
 };

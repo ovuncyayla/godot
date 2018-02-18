@@ -5,13 +5,56 @@ module_env = env.Clone()
 
 thirdparty_dir = "#thirdparty/midifile/"
 
+module_env.Append(CPPPATH=thirdparty_dir + "include")
 
-midifile_src = [#"src-library/Options.cpp"
+midifile_src = [#src-library
+    #"src-library/Options.cpp"
     #    "src-library/Binasc.cpp",
     "src-library/MidiEventList.cpp",
     "src-library/MidiMessage.cpp",
     "src-library/MidiEvent.cpp",
-    "src-library/MidiFile.cpp"]
+    "src-library/MidiFile.cpp",
+
+    #src-programs
+    "src-programs/80off.cpp",
+    "src-programs/asciimidi.cpp",
+    "src-programs/binasc.cpp",
+    "src-programs/createmidifile2.cpp",
+    "src-programs/createmidifile.cpp",
+    "src-programs/drumtab.cpp",
+    "src-programs/durations.cpp",
+#    "src-programs/henonfile.cpp",
+#    "src-programs/mid2hum.cpp",
+    "src-programs/mid2mat.cpp",
+    "src-programs/mid2mtb.cpp",
+    "src-programs/mid2svg.cpp",
+    "src-programs/midi2beep.cpp",
+    "src-programs/midi2binasc.cpp",
+    "src-programs/midi2melody.cpp",
+    "src-programs/midi2notes.cpp",
+    "src-programs/midi2skini.cpp",
+    "src-programs/midi2text.cpp",
+    "src-programs/midicat.cpp",
+#    "src-programs/midiexcerpt.cpp",
+    "src-programs/midimixup.cpp",
+    "src-programs/miditime.cpp",
+#    "src-programs/peep2midi.cpp",
+    "src-programs/perfid.cpp",
+    "src-programs/retick.cpp",
+    "src-programs/shutak.cpp",
+    "src-programs/smfdur.cpp",
+    "src-programs/stretch.cpp",
+    "src-programs/sysextest.cpp",
+    "src-programs/text2midi.cpp",
+    "src-programs/textmidi.cpp",
+    "src-programs/toascii.cpp",
+    "src-programs/tobinary.cpp",
+    "src-programs/tobin.cpp",
+    "src-programs/todec.cpp",
+    "src-programs/tohex.cpp",
+    "src-programs/type0.cpp",
+    "src-programs/vlv.cpp"
+]
 
 
 thirdparty_sources = [thirdparty_dir + file for file in midifile_src]
@@ -24,6 +67,5 @@ module_env.add_source_files(module_env.modules_sources,"*.cpp") # just add all c
 #src_list = ["summator.cpp", "other.cpp", "etc.cpp"]
 #env.add_source_files(env.modules_sources, src_list)
 
-#env.Append(CPPPATH="mylib/include") # this is a relative path
 #env.Append(CPPPATH="#myotherlib/include") # this is an 'absolute' path
 module_env.Append(CXXFLAGS=['-O2', '-std=c++11']) # env variable

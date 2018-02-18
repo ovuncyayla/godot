@@ -1,6 +1,10 @@
 /* miditest.cpp */
 
 #include "miditest.h"
+#include <MidiFile.h>
+#include <Options.h>
+#include <iostream>
+#include <iomanip>
 
 void MidiTest::add(int value) {
 
@@ -27,3 +31,85 @@ void MidiTest::_bind_methods() {
 MidiTest::MidiTest() {
     count = 0;
 }
+
+#define HIGH_HAT    59
+#define SNARE       38
+#define BASS_DRUM   41
+
+#define QUARTER   120        /* ticks per quarter note */
+#define SIXTEENTH 30         /* ticks per sixteenth note */
+
+typedef unsigned char uchar;
+//void AddDrumTrack(MidiFile& midifile, int* data, int instrument, int ticks);
+
+
+
+int MidiTest::asd() {
+   MidiFile outputfile;        // create an empty MIDI file with one track
+   outputfile.absoluteTicks(); // time information stored as absolute time
+                               // (will be coverted to delta time when written)
+   outputfile.setTicksPerQuarterNote(QUARTER);
+
+   int hhdata[50] = {'x', '-', 'x', '-', 'x', '-', 'x', '-', -1};
+   int sndata[50] = {'-', '-', 'x', '-', '-', '-', 'x', '-', -1};
+   int bsdata[50] = {'x', '-', '-', '-', 'x', '-', '-', '-', -1};
+
+   // AddDrumTrack(outputfile, hhdata, HIGH_HAT,  SIXTEENTH);
+   // AddDrumTrack(outputfile, sndata, SNARE,     SIXTEENTH);
+   // AddDrumTrack(outputfile, bsdata, BASS_DRUM, SIXTEENTH);
+
+   outputfile.sortTracks();         // make sure data is in correct order
+   outputfile.write("/home/spak/Desktop/rhythm.mid");  // write Standard MIDI File twinkle.mid
+
+   return 0;
+}
+
+// void AddDrumTrack(MidiFile& midifile, int* data, int instrument, int ticks) {
+//    vector<uchar> midievent;   // temporary storage for MIDI events
+//    midievent.resize(3);       // set the size of the array to 3 bytes
+//    midievent[2] = 64;         // set the loudness to a constant value
+//    int notestate = 0;         // 0 = off, 1 = on
+//    int i         = 0;
+//    int actiontime;
+//    int track = midifile.addTrack();      // Add a track to the MIDI file
+
+//    while (data[i] >= 0) {
+//       switch (data[i]) {
+//          case 'x': case 'X':
+//             if (notestate) {
+//                // turn off previous note
+//                midievent[0] = 0x89;
+//                midievent[1] = instrument;
+//                actiontime = ticks * i - 1;
+//                midifile.addEvent(track, actiontime, midievent);
+//             }
+//             // turn on current note
+//             midievent[0] = 0x99;
+//             midievent[1] = instrument;
+//             actiontime = ticks * i;
+//             midifile.addEvent(track, actiontime, midievent);
+//             notestate = 1;
+//             break;
+//          case '0': case 'o': case 'O':
+//             // turn off previous note
+//             if (notestate) {
+//                midievent[0] = 0x89;
+//                midievent[1] = instrument;
+//                actiontime = ticks * i - 1;
+//                midifile.addEvent(track, actiontime, midievent);
+//                notestate = 0;
+//             }
+//          break;
+//       }
+//       i++;
+//    }
+
+//    if (notestate) {
+//       // turn off last note
+//       midievent[0] = 0x89;
+//       midievent[1] = instrument;
+//       actiontime = ticks * i;
+//       midifile.addEvent(track, actiontime, midievent);
+//    }
+
+// }
