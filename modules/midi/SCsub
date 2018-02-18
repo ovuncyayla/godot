@@ -8,8 +8,8 @@ thirdparty_dir = "#thirdparty/midifile/"
 module_env.Append(CPPPATH=thirdparty_dir + "include")
 
 midifile_src = [#src-library
-    #"src-library/Options.cpp"
-    #    "src-library/Binasc.cpp",
+    "src-library/Options.cpp",
+    "src-library/Binasc.cpp",
     "src-library/MidiEventList.cpp",
     "src-library/MidiMessage.cpp",
     "src-library/MidiEvent.cpp",

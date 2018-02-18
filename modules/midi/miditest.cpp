@@ -26,6 +26,7 @@ void MidiTest::_bind_methods() {
     ClassDB::bind_method(D_METHOD("add", "value"), &MidiTest::add);
     ClassDB::bind_method(D_METHOD("reset"), &MidiTest::reset);
     ClassDB::bind_method(D_METHOD("get_total"), &MidiTest::get_total);
+    ClassDB::bind_method(D_METHOD("asd"), &MidiTest::asd);
 }
 
 MidiTest::MidiTest() {
