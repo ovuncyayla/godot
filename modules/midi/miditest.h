@@ -17,6 +17,7 @@ public:
     void reset();
     int get_total() const;
     int asd();
+    int fsynthTest();
 
     MidiTest();
 };

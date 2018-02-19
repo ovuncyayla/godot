@@ -5,6 +5,7 @@
 #include <Options.h>
 #include <iostream>
 #include <iomanip>
+#include <fluidsynth.h>
 
 void MidiTest::add(int value) {
 
@@ -27,6 +28,7 @@ void MidiTest::_bind_methods() {
     ClassDB::bind_method(D_METHOD("reset"), &MidiTest::reset);
     ClassDB::bind_method(D_METHOD("get_total"), &MidiTest::get_total);
     ClassDB::bind_method(D_METHOD("asd"), &MidiTest::asd);
+    ClassDB::bind_method(D_METHOD("fs"), &MidiTest::fsynthTest);
 }
 
 MidiTest::MidiTest() {
@@ -44,6 +46,14 @@ typedef unsigned char uchar;
 //void AddDrumTrack(MidiFile& midifile, int* data, int instrument, int ticks);
 
 
+
+int MidiTest::fsynthTest(){
+  fluid_settings_t* settings = new_fluid_settings();
+  fluid_settings_setint(settings, "synth.polyphony", 128);
+  /* ... */
+  delete_fluid_settings(settings);
+  return 0;
+}
 
 int MidiTest::asd() {
    MidiFile outputfile;        // create an empty MIDI file with one track

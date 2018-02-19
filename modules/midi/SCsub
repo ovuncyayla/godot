@@ -69,3 +69,82 @@ module_env.add_source_files(module_env.modules_sources,"*.cpp") # just add all c
 
 #env.Append(CPPPATH="#myotherlib/include") # this is an 'absolute' path
 module_env.Append(CXXFLAGS=['-O2', '-std=c++11']) # env variable
+
+# thirdparty/fluidsynth
+
+fluidsynth_path = "#thirdparty/fluidsynth/"
+# module_env.Append(CPPPATH="/usr/include/glib-2.0")
+# module_env.Append(CPPPATH="/usr/include/glib-2.0/include")
+# module_env.Append(CPPPATH="/usr/lib/x86_64-linux-gnu/glib-2.0/")
+module_env.Append(CPPPATH="/usr/include/glib-2.0:/usr/lib/x86_64-linux-gnu/glib-2.0/include")
+
+module_env.Append(CPPPATH=fluidsynth_path)
+module_env.add_source_files(module_env.modules_sources, fluidsynth_path + "*.c")
+
+# fluidsynth_src_dirs = [
+#     fluidsynth_path + "src",
+#     fluidsynth_path + "src/drivers",
+#     fluidsynth_path + "src/midi",
+#     fluidsynth_path + "src/rvoice",
+#     fluidsynth_path + "src/sfloader",
+#     fluidsynth_path + "src/synth",
+#     fluidsynth_path + "src/utils"]
+#module_env.add_source_files(module_env.modules_sources, fluidsynth_src_dirs)
+
+# for src_dir in fluidsynth_src_dirs:
+#      print src_dir
+#      module_env.add_source_files(module_env.modules_sources, src_dir + "/*.c")
+
+fluidsynth_src = [
+fluidsynth_path + "fluidsynth.c",
+fluidsynth_path +    "fluid_cmd.c",
+fluidsynth_path +    "fluid_filerenderer.c",
+fluidsynth_path +    "fluid_ladspa.c",
+fluidsynth_path +    "fluid_lash.c",
+fluidsynth_path +    "fluid_rtkit.c",
+fluidsynth_path +    "fluid_adriver.c",
+fluidsynth_path +    "fluid_alsa.c",
+fluidsynth_path +    "fluid_aufile.c",
+fluidsynth_path +    "fluid_coreaudio.c",
+fluidsynth_path +    "fluid_coremidi.c",
+fluidsynth_path +    "fluid_dart.c",
+fluidsynth_path +    "fluid_dsound.c",
+fluidsynth_path +    "fluid_jack.c",
+fluidsynth_path +    "fluid_mdriver.c",
+fluidsynth_path +    "fluid_midishare.c",
+fluidsynth_path +    "fluid_oss.c",
+fluidsynth_path +    "fluid_portaudio.c",
+fluidsynth_path +    "fluid_pulse.c",
+fluidsynth_path +    "fluid_sndmgr.c",
+fluidsynth_path +    "fluid_winmidi.c",
+fluidsynth_path +    "fluid_midi.c",
+fluidsynth_path +    "fluid_midi_router.c",
+fluidsynth_path +    "fluid_seqbind.c",
+fluidsynth_path +    "fluid_seq.c",
+fluidsynth_path +    "fluid_adsr_env.c",
+fluidsynth_path +    "fluid_chorus.c",
+fluidsynth_path +    "fluid_iir_filter.c",
+fluidsynth_path +    "fluid_lfo.c",
+fluidsynth_path +    "fluid_rev.c",
+fluidsynth_path +    "fluid_rvoice.c",
+fluidsynth_path +    "fluid_rvoice_dsp.c",
+fluidsynth_path +    "fluid_rvoice_event.c",
+fluidsynth_path +    "fluid_rvoice_mixer.c",
+fluidsynth_path +    "fluid_defsfont.c",
+fluidsynth_path +    "fluid_ramsfont.c",
+fluidsynth_path +    "fluid_sfont.c",
+fluidsynth_path +    "fluid_chan.c",
+fluidsynth_path +    "fluid_event.c",
+fluidsynth_path +    "fluid_gen.c",
+fluidsynth_path +    "fluid_mod.c",
+fluidsynth_path +    "fluid_synth.c",
+fluidsynth_path +    "fluid_tuning.c",
+fluidsynth_path +    "fluid_voice.c",
+fluidsynth_path +    "fluid_conv.c",
+fluidsynth_path +    "fluid_hash.c",
+fluidsynth_path +    "fluid_list.c",
+fluidsynth_path +    "fluid_ringbuffer.c",
+fluidsynth_path +    "fluid_settings.c",
+fluidsynth_path +    "fluid_sys.c"]
+
+module_env.add_source_files(module_env.modules_sources, fluidsynth_src)
